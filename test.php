@@ -101,36 +101,36 @@ add_shortcode('crypto-fx', function(){
     </div>
 
     <div class="tabs-container" x-cloak>
-        <div x-show="tab === 'tab-1'" class="tab-1 swiper">
+        <div x-show="tab === 'tab-1'" class="tab-1 swiper" init="false">
             <div class="columns-wrapper  swiper-wrapper">
                 <div class="columns swiper-slide">
                     <ul class="price">
                         <li class="header">Phase 1</li>
-                        <li x-html="'Profit Target <br>' + formatter((money*0.10 + (money)))" ></li>
-                        <li>Max Daily Loss <br>5%</li>
-                        <li x-html="'Max Drawdown Loss <br>' + formatter((money*0.08) )"></li>
-                        <li>Leverage<br>Up to 30%</li>
-                        <li x-html="'Refundable fee <br>' + formatter(refundable_fee[money])">Refundable Fee</li>
+                        <li x-html="'Profit Target <br> <strong>' + formatter((money*0.10 + (money)))" ></li>
+                        <li>Max Daily Loss <br> <strong>5%</strong></li>
+                        <li x-html="'Max Drawdown Loss <br><strong>' + formatter((money*0.08) )"></li>
+                        <li>Leverage<br><strong>Up to 30%</strong></li>
+                        <li x-html="'Refundable fee <br><strong>' + formatter(refundable_fee[money])">Refundable Fee</li>
                     </ul>
                 </div>
                 <div class="columns swiper-slide">
                     <ul class="price">
                         <li class="header">Phase 2</li>
-                        <li x-html="'Profit Target <br>' + formatter((money*0.05 + (money)))" ></li>
-                        <li>Max Daily Loss <br>5%</li>
-                        <li x-html="'Max Drawdown Loss <br>' + formatter((money*0.08)) "></li>
-                        <li>Leverage<br>Up to 30%</li>
-                        <li x-html="'Refundable fee <br> N/A'">Refundable Fee</li>
+                        <li  x-html="'Profit Target <br><strong>' + formatter((money*0.05 + (money)))" ></li>
+                        <li>Max Daily Loss <br> <strong>5%</strong></li>
+                        <li x-html="'Max Drawdown Loss <br><strong>' + formatter((money*0.08)) "></li>
+                        <li>Leverage<br><strong>Up to 30%</strong></li>
+                        <li x-html="'Refundable fee <br><strong> N/A'">Refundable Fee</li>
                     </ul>
                 </div>
                 <div class="columns swiper-slide">
                     <ul class="price">
                         <li class="header">Funded Account</li>
-                        <li x-html="'Profit Target <br>' + (money*0)" ></li>
-                        <li>Max Daily Loss <br>5%</li>
-                        <li x-html="'Max Drawdown Loss <br>' + formatter((money*0.08)) "></li>
-                        <li>Leverage<br>Up to 30%</li>
-                        <li x-html="'Refundable fee <br> 100%'">Refundable Fee</li>
+                        <li x-html="'Profit Target <br><strong>' + (money*0)" ></li>
+                        <li>Max Daily Loss <br> <strong>5%</strong></li>
+                        <li x-html="'Max Drawdown Loss <br><strong>' + formatter((money*0.08)) "></li>
+                        <li>Leverage<br><strong>Up to 30%</strong></li>
+                        <li x-html="'Refundable fee <br><strong> 100%'">Refundable Fee</li>
                     </ul>
                 </div>
             </div>
@@ -172,8 +172,10 @@ add_shortcode('crypto-fx', function(){
                 </div>
             </div>
         </div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
+        <div class="swiper-btns">
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
     </div>
 
     <div class="cta">
@@ -265,7 +267,9 @@ add_shortcode('crypto-fx', function(){
     .price li:not(:last-child){
         border-bottom: 1px dashed #eee;
     }
-
+    .price li strong{
+        font-size : 22px;
+    }
     /* Grey list item */
     .price .grey {
         background-color: #eee;
@@ -375,6 +379,59 @@ add_shortcode('crypto-fx', function(){
         border-radius: 50%;
     }
 </style>
+
+    <style>
+        .swiper-button-prev, .swiper-button-next {
+            background: #157efd;
+            border-radius: 100%;
+            color: #ffffff;
+            height: 40px;
+            width: 40px;
+        }
+        .swiper-button-prev, .swiper-rtl .swiper-button-next {
+            left: 10px;
+            right: auto;
+            font-family:none !important;
+
+        }
+        .swiper-button-next, .swiper-button-prev {
+            position: absolute;
+            top: 50%;
+            /* width: calc(var(--swiper-navigation-size)/ 44 * 27); */
+            height: var(--swiper-navigation-size);
+            margin-top: calc(0px - (var(--swiper-navigation-size)/ 2));
+            z-index: 10;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--swiper-navigation-color,var(--swiper-theme-color));
+            font-family:none !important;
+        }
+
+        swiper-button-next:after, .swiper-button-prev:after {
+            content:'previous';
+            font-size : 15px !Important;
+            width : 15px;
+            height:15px;
+            position:relative;
+            left:-5px;
+            color:white;
+        }
+        swiper-button-next:after, .swiper-button-prev:before {
+            content:'';
+            font-size : 15px !Important;
+            width : 15px;
+            height:15px;
+            color:white;
+        }
+
+        .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+            content: 'next';
+            font-size : 15px !Important;
+            color:white;
+        }
+    </style>
 
 <?php
 
