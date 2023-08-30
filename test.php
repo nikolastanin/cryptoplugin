@@ -196,12 +196,17 @@ add_shortcode('crypto-fx', function(){
     [x-cloak] {
         display: none !important;
     }
-
-    .swiper-button-prev,
-    .swiper-button-next {
-        display: none;
+    .swiper-btns {
+        position: absolute;
+        width: 100%;
+        top: 50%;
     }
-
+    .swiper-btns {
+        display: none !important;
+    }
+    .tabs-container{
+        position: relative;
+    }
     .crypto-fx-tabs-buttons {
         display: flex;
         justify-content: center;
@@ -298,9 +303,8 @@ add_shortcode('crypto-fx', function(){
             width: 100% !important;
         }
 
-        .swiper-button-prev,
-        .swiper-button-next {
-            display: block;
+        .swiper-btns {
+            display: block !important;
         }
 
         .prices-container {
@@ -417,6 +421,7 @@ add_shortcode('crypto-fx', function(){
             position:relative;
             left:-5px;
             color:white;
+            font-weight: bold;
         }
         swiper-button-next:after, .swiper-button-prev:before {
             content:'';
@@ -424,12 +429,19 @@ add_shortcode('crypto-fx', function(){
             width : 15px;
             height:15px;
             color:white;
+            font-weight: bold;
         }
 
         .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
             content: 'next';
             font-size : 15px !Important;
             color:white;
+            font-weight: bold;
+        }
+        .swiper-button-prev, .swiper-button-next {
+            margin: 0 -20px 0;
+            width: 44px;
+            height: 44px;
         }
     </style>
 
