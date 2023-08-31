@@ -24,14 +24,22 @@ add_action(
 add_shortcode('crypto-fx', function(){
 ?>
 <section class="crypto-fx-container"
-         x-data="{ tab: 'tab-1', name:'nikola', money:5000,
+         x-data="{ tab: 'tab-1', name:'nikola', money:25000,
          refundable_fee:{
             '5000' : 70,
             '10000' : 130,
             '25000' : 250,
             '50000' : 440,
             '100000' : 630 },
-            fx_step : 'fx-step-1',
+            refundable_fee_fx:{
+            '5000' : 70,
+            '10000' : 100,
+            '25000' : 200,
+            '50000' : 350,
+            '100000' : 500,
+            '200000' : 1000},
+            fx_step : 'fx-step-2',
+             // change this to fx-step-1
             formatter : function(value){
             const formatter = new Intl.NumberFormat('en-US', {
           style: 'currency',
@@ -49,13 +57,15 @@ add_shortcode('crypto-fx', function(){
                  swiper[1].slideTo(0);
                  swiper[2].slideTo(0);
                  // uncomment this if revert money also! this.money = 5000;
+                 // set active class for prices
             }
 
 
             }"
          x-init="{ tab: 'tab-1' }"
 >
-    <h2 class="elementor-heading-title elementor-size-default">SELECT FROM A WIDE VARIETY OF CHALLENGES</h2>
+
+
 <!--    tabs switcher-->
     <div class="crypto-fx-tabs-switcher">
         <!-- Rounded switch -->
@@ -64,9 +74,10 @@ add_shortcode('crypto-fx', function(){
             <span class="slider round" x-bind:class="{ 'fx': isFx }"></span>
         </label>
     </div>
-    <div x-text="formatter(money)"></div>
+<!--    <div x-text="formatter(money)"></div>-->
+<!--    PRICES-->
     <div class="prices-container">
-        <div class="elementor-button-wrapper prices" @click.prevent="money=5000">
+        <div x-show="tab === 'tab-1'" class="elementor-button-wrapper prices" @click.prevent="money=5000">
             <a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-flip"
                 href="/app-landing/#contact">
                 <span class="elementor-button-content-wrapper">
@@ -85,7 +96,7 @@ add_shortcode('crypto-fx', function(){
             </a>
         </div>
         <div class="elementor-button-wrapper prices" @click.prevent="money=25000">
-            <a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-flip"
+            <a class="elementor-button active elementor-button-link elementor-size-sm elementor-animation-flip"
                 href="/app-landing/#contact">
                 <span class="elementor-button-content-wrapper">
                     <span class="ui-btn-anim-wrapp"><span class="elementor-button-text">$25,000</span><span
@@ -111,6 +122,16 @@ add_shortcode('crypto-fx', function(){
                 </span>
             </a>
         </div>
+<!--        200k - only for fx-->
+        <div x-show="tab === 'tab-2'" class="elementor-button-wrapper prices" @click.prevent="money=200000">
+            <a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-flip"
+               href="/app-landing/#contact">
+                <span class="elementor-button-content-wrapper">
+                    <span class="ui-btn-anim-wrapp"><span class="elementor-button-text">$200,000</span><span
+                                class="elementor-button-text">$200,000</span></span>
+                </span>
+            </a>
+        </div>
     </div>
 <!--    steps changer-->
     <div x-show="tab === 'tab-2'"  class="fx-steps-buttons-container">
@@ -124,7 +145,7 @@ add_shortcode('crypto-fx', function(){
             </a>
         </div>
         <div class="elementor-button-wrapper step-btn challenges" @click.prevent="fx_step ='fx-step-2'; swiperDefault();">
-            <a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-flip"
+            <a class="elementor-button active elementor-button-link elementor-size-sm elementor-animation-flip"
                href="/app-landing/#contact">
                 <span class="elementor-button-content-wrapper">
                     <span class="ui-btn-anim-wrapp"><span class="elementor-button-text">2-STEP-CHALLENGE</span><span
@@ -141,17 +162,17 @@ add_shortcode('crypto-fx', function(){
                 <div class="columns-wrapper  swiper-wrapper">
                 <div class="columns swiper-slide">
                     <ul class="price">
-                        <li class="header">Phase 1</li>
+                        <li class="header">Step 1</li>
                         <li x-html="'Profit Target <br> <strong>' + formatter((money*0.10 + (money)))" ></li>
                         <li>Max Daily Loss <br> <strong>5%</strong></li>
                         <li x-html="'Max Drawdown Loss <br><strong>' + formatter((money*0.08) )"></li>
                         <li>Leverage<br><strong>Up to 30%</strong></li>
-                        <li x-html="'Refundable fee <br><strong>' + formatter(refundable_fee[money])">Refundable Fee</li>
+                        <li x-html="'Refundable fee <br><strong>' + formatter(refundable_fee[money]) ">Refundable Fee</li>
                     </ul>
                 </div>
                 <div class="columns swiper-slide">
                     <ul class="price">
-                        <li class="header">Phase 2</li>
+                        <li class="header">Step 2</li>
                         <li  x-html="'Profit Target <br><strong>' + formatter((money*0.05 + (money)))" ></li>
                         <li>Max Daily Loss <br> <strong>5%</strong></li>
                         <li x-html="'Max Drawdown Loss <br><strong>' + formatter((money*0.08)) "></li>
@@ -173,12 +194,12 @@ add_shortcode('crypto-fx', function(){
             </div>
             </div>
         <div x-show="tab === 'tab-2'" class="tab-2" init="false">
-           <div class="swiper">
+<!--          1 step-->
+            <div class="swiper">
                <div x-show="fx_step === 'fx-step-1'" class="columns-wrapper  swiper-wrapper fx-steps1">
-                   1steps
                    <div class="columns cols-50 swiper-slide">
                        <ul class="price">
-                           <li class="header">Phase 1 FX FX FX</li>
+                           <li class="header">Step 1</li>
                            <li x-html="'Profit Target <br> <strong>' + formatter((money*0.10 + (money)))" ></li>
                            <li>Max Daily Loss <br> <strong>5%</strong></li>
                            <li x-html="'Max Drawdown Loss <br><strong>' + formatter((money*0.08) )"></li>
@@ -198,26 +219,26 @@ add_shortcode('crypto-fx', function(){
                    </div>
                </div>
            </div>
+<!--            2 step-->
             <div class="swiper">
                 <div x-show="fx_step === 'fx-step-2'" class="columns-wrapper  swiper-wrapper fx-step2">
-                    2 steps
                     <div class="columns swiper-slide">
                         <ul class="price">
-                            <li class="header">Phase 1 FX FX FX</li>
-                            <li x-html="'Profit Target <br> <strong>' + formatter((money*0.10 + (money)))" ></li>
+                            <li class="header">Step 1</li>
+                            <li x-html="'Profit Target <br> <strong>' + formatter((money*0.08 + (money)))" ></li>
                             <li>Max Daily Loss <br> <strong>5%</strong></li>
-                            <li x-html="'Max Drawdown Loss <br><strong>' + formatter((money*0.08) )"></li>
-                            <li>Leverage<br><strong>Up to 30%</strong></li>
-                            <li x-html="'Refundable fee <br><strong>' + formatter(refundable_fee[money])">Refundable Fee</li>
+                            <li x-html="'Max Drawdown Loss <br><strong>' + formatter((money*0.10) )"></li>
+                            <li>Leverage<br><strong>Up to 100x</strong></li>
+                            <li x-html="'Refundable fee <br><strong>' + formatter(refundable_fee_fx[money])">Refundable Fee</li>
                         </ul>
                     </div>
                     <div class="columns swiper-slide">
                         <ul class="price">
-                            <li class="header">Phase 2</li>
+                            <li class="header">Step 2</li>
                             <li  x-html="'Profit Target <br><strong>' + formatter((money*0.05 + (money)))" ></li>
                             <li>Max Daily Loss <br> <strong>5%</strong></li>
-                            <li x-html="'Max Drawdown Loss <br><strong>' + formatter((money*0.08)) "></li>
-                            <li>Leverage<br><strong>Up to 30%</strong></li>
+                            <li x-html="'Max Drawdown Loss <br><strong>' + formatter((money*0.10)) "></li>
+                            <li>Leverage<br><strong>Up to 100x</strong></li>
                             <li x-html="'Refundable fee <br><strong> N/A'">Refundable Fee</li>
                         </ul>
                     </div>
@@ -226,8 +247,8 @@ add_shortcode('crypto-fx', function(){
                             <li class="header">Funded Account</li>
                             <li x-html="'Profit Target <br><strong>' + (money*0)" ></li>
                             <li>Max Daily Loss <br> <strong>5%</strong></li>
-                            <li x-html="'Max Drawdown Loss <br><strong>' + formatter((money*0.08)) "></li>
-                            <li>Leverage<br><strong>Up to 30%</strong></li>
+                            <li x-html="'Max Drawdown Loss <br><strong>' + formatter((money*0.18)) "></li>
+                            <li>Leverage<br><strong>Up to 100x</strong></li>
                             <li x-html="'Refundable fee <br><strong> 100%'">Refundable Fee</li>
                         </ul>
                     </div>
@@ -257,6 +278,9 @@ add_shortcode('crypto-fx', function(){
 <style>
     [x-cloak] {
         display: none !important;
+    }
+    .cta > .elementor-button-wrapper .elementor-button {
+        width: 50%;
     }
     .step-btn{
         margin:5px;
