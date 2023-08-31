@@ -287,17 +287,27 @@ add_shortcode('crypto-fx', function(){
         </div>
     </div>
 
-    <div class="cta">
-        <div class="elementor-button-wrapper">
-            <a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-flip"
-                href="/app-landing/#contact">
+   <div class="tabs-container">
+       <div class="tab">
+           <div>
+               <div class="columns-wrapper">
+                   <div class="columns">
+                       <div class="cta">
+                           <div class="elementor-button-wrapper cta-wrapper">
+                               <a class="elementor-button elementor-button-link cta-btn elementor-size-sm elementor-animation-flip"
+                                  href="/app-landing/#contact">
                 <span class="elementor-button-content-wrapper">
                     <span class="ui-btn-anim-wrapp"><span class="elementor-button-text">GET FUNDED</span><span
-                            class="elementor-button-text">GET FUNDED</span></span>
+                                class="elementor-button-text">GET FUNDED</span></span>
                 </span>
-            </a>
-        </div>
-    </div>
+                               </a>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
 
 </section>
 <?php
