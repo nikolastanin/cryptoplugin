@@ -31,6 +31,7 @@ add_shortcode('crypto-fx', function(){
             '25000' : 250,
             '50000' : 440,
             '100000' : 630 },
+            fx_step : 'fx-step-1',
             formatter : function(value){
             const formatter = new Intl.NumberFormat('en-US', {
           style: 'currency',
@@ -38,17 +39,29 @@ add_shortcode('crypto-fx', function(){
           maximumFractionDigits: 0
         });
            return formatter.format(value);
+            },
+            isFx:false,
+            toggleFxClass : function(){
+                this.isFx = !this.isFx;
+            },
+            swiperDefault : function(){
+                 swiper[0].slideTo(0);
+                 swiper[1].slideTo(0);
+                 swiper[2].slideTo(0);
+                 // uncomment this if revert money also! this.money = 5000;
             }
+
 
             }"
          x-init="{ tab: 'tab-1' }"
 >
     <h2 class="elementor-heading-title elementor-size-default">SELECT FROM A WIDE VARIETY OF CHALLENGES</h2>
-    <div class="crypto-fx-tabs-buttons">
+<!--    tabs switcher-->
+    <div class="crypto-fx-tabs-switcher">
         <!-- Rounded switch -->
         <label class="switch">
-            <input type="checkbox" @click="tab = (tab === 'tab-1' ? 'tab-2' : 'tab-1');">
-            <span class="slider round"></span>
+            <input type="checkbox" @click="tab = (tab === 'tab-1' ? 'tab-2' : 'tab-1'); toggleFxClass(); swiperDefault();">
+            <span class="slider round" x-bind:class="{ 'fx': isFx }"></span>
         </label>
     </div>
     <div x-text="formatter(money)"></div>
@@ -99,10 +112,33 @@ add_shortcode('crypto-fx', function(){
             </a>
         </div>
     </div>
+<!--    steps changer-->
+    <div x-show="tab === 'tab-2'"  class="fx-steps-buttons-container">
+        <div class="elementor-button-wrapper step-btn challenges"  @click.prevent="fx_step ='fx-step-1'; swiperDefault();">
+            <a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-flip"
+               href="/app-landing/#contact">
+                <span class="elementor-button-content-wrapper">
+                    <span class="ui-btn-anim-wrapp"><span class="elementor-button-text">1-STEP-CHALLENGE</span><span
+                                class="elementor-button-text">1-STEP-CHALLENGE</span></span>
+                </span>
+            </a>
+        </div>
+        <div class="elementor-button-wrapper step-btn challenges" @click.prevent="fx_step ='fx-step-2'; swiperDefault();">
+            <a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-flip"
+               href="/app-landing/#contact">
+                <span class="elementor-button-content-wrapper">
+                    <span class="ui-btn-anim-wrapp"><span class="elementor-button-text">2-STEP-CHALLENGE</span><span
+                                class="elementor-button-text">2-STEP-CHALLENGE</span></span>
+                </span>
+            </a>
+        </div>
+    </div>
 
+<!--   TABS-->
     <div class="tabs-container" x-cloak>
-        <div x-show="tab === 'tab-1'" class="tab-1 swiper" init="false">
-            <div class="columns-wrapper  swiper-wrapper">
+        <div x-show="tab === 'tab-1'" class="tab-1" init="false">
+            <div class="swiper">
+                <div class="columns-wrapper  swiper-wrapper">
                 <div class="columns swiper-slide">
                     <ul class="price">
                         <li class="header">Phase 1</li>
@@ -134,41 +170,67 @@ add_shortcode('crypto-fx', function(){
                     </ul>
                 </div>
             </div>
-        </div>
-        <div x-show="tab === 'tab-2'" class="tab-2 swiper">
-            <div class="columns-wrapper  swiper-wrapper">
-                <div class="columns swiper-slide">
-                    <ul class="price">
-                        <li class="header">Basic NIDZO SLIDE 2</li>
-                        <li class="grey">$ 9.99 / year</li>
-                        <li>10GB Storage</li>
-                        <li>10 Emails</li>
-                        <li>10 Domains</li>
-                        <li>1GB Bandwidth</li>
-                        <li class="grey"><a href="#" class="button">Sign Up</a></li>
-                    </ul>
-                </div>
-                <div class="columns swiper-slide">
-                    <ul class="price">
-                        <li class="header">Basic</li>
-                        <li class="grey">$ 9.99 / year</li>
-                        <li>10GB Storage</li>
-                        <li>10 Emails</li>
-                        <li>10 Domains</li>
-                        <li>1GB Bandwidth</li>
-                        <li class="grey"><a href="#" class="button">Sign Up</a></li>
-                    </ul>
-                </div>
-                <div class="columns swiper-slide">
-                    <ul class="price">
-                        <li class="header">Basic</li>
-                        <li class="grey">$ 9.99 / year</li>
-                        <li>10GB Storage</li>
-                        <li>10 Emails</li>
-                        <li>10 Domains</li>
-                        <li>1GB Bandwidth</li>
-                        <li class="grey"><a href="#" class="button">Sign Up</a></li>
-                    </ul>
+            </div>
+            </div>
+        <div x-show="tab === 'tab-2'" class="tab-2" init="false">
+           <div class="swiper">
+               <div x-show="fx_step === 'fx-step-1'" class="columns-wrapper  swiper-wrapper fx-steps1">
+                   1steps
+                   <div class="columns cols-50 swiper-slide">
+                       <ul class="price">
+                           <li class="header">Phase 1 FX FX FX</li>
+                           <li x-html="'Profit Target <br> <strong>' + formatter((money*0.10 + (money)))" ></li>
+                           <li>Max Daily Loss <br> <strong>5%</strong></li>
+                           <li x-html="'Max Drawdown Loss <br><strong>' + formatter((money*0.08) )"></li>
+                           <li>Leverage<br><strong>Up to 30%</strong></li>
+                           <li x-html="'Refundable fee <br><strong>' + formatter(refundable_fee[money])">Refundable Fee</li>
+                       </ul>
+                   </div>
+                   <div class="columns cols-50 swiper-slide">
+                       <ul class="price">
+                           <li class="header">Funded Account</li>
+                           <li x-html="'Profit Target <br><strong>' + (money*0)" ></li>
+                           <li>Max Daily Loss <br> <strong>5%</strong></li>
+                           <li x-html="'Max Drawdown Loss <br><strong>' + formatter((money*0.08)) "></li>
+                           <li>Leverage<br><strong>Up to 30%</strong></li>
+                           <li x-html="'Refundable fee <br><strong> 100%'">Refundable Fee</li>
+                       </ul>
+                   </div>
+               </div>
+           </div>
+            <div class="swiper">
+                <div x-show="fx_step === 'fx-step-2'" class="columns-wrapper  swiper-wrapper fx-step2">
+                    2 steps
+                    <div class="columns swiper-slide">
+                        <ul class="price">
+                            <li class="header">Phase 1 FX FX FX</li>
+                            <li x-html="'Profit Target <br> <strong>' + formatter((money*0.10 + (money)))" ></li>
+                            <li>Max Daily Loss <br> <strong>5%</strong></li>
+                            <li x-html="'Max Drawdown Loss <br><strong>' + formatter((money*0.08) )"></li>
+                            <li>Leverage<br><strong>Up to 30%</strong></li>
+                            <li x-html="'Refundable fee <br><strong>' + formatter(refundable_fee[money])">Refundable Fee</li>
+                        </ul>
+                    </div>
+                    <div class="columns swiper-slide">
+                        <ul class="price">
+                            <li class="header">Phase 2</li>
+                            <li  x-html="'Profit Target <br><strong>' + formatter((money*0.05 + (money)))" ></li>
+                            <li>Max Daily Loss <br> <strong>5%</strong></li>
+                            <li x-html="'Max Drawdown Loss <br><strong>' + formatter((money*0.08)) "></li>
+                            <li>Leverage<br><strong>Up to 30%</strong></li>
+                            <li x-html="'Refundable fee <br><strong> N/A'">Refundable Fee</li>
+                        </ul>
+                    </div>
+                    <div class="columns swiper-slide">
+                        <ul class="price">
+                            <li class="header">Funded Account</li>
+                            <li x-html="'Profit Target <br><strong>' + (money*0)" ></li>
+                            <li>Max Daily Loss <br> <strong>5%</strong></li>
+                            <li x-html="'Max Drawdown Loss <br><strong>' + formatter((money*0.08)) "></li>
+                            <li>Leverage<br><strong>Up to 30%</strong></li>
+                            <li x-html="'Refundable fee <br><strong> 100%'">Refundable Fee</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -196,6 +258,37 @@ add_shortcode('crypto-fx', function(){
     [x-cloak] {
         display: none !important;
     }
+    .step-btn{
+        margin:5px;
+    }
+    .prices>.elementor-button {
+        background-color: white !important;
+        color: #0DA5FA !important;
+        border: 2px solid #0DA5FA !important;
+    }
+    .prices>.elementor-button.active {
+        background-color: #0DA5FA !important;
+        color: white !important;
+        border: 2px solid #0DA5FA !important;
+    }
+
+
+    .challenges>.elementor-button {
+        background-color: white !important;
+        color: #0DA5FA !important;
+        border: 2px solid #0DA5FA !important;
+    }
+    .challenges>.elementor-button.active {
+        background-color: #0DA5FA !important;
+        color: white !important;
+        border: 2px solid #0DA5FA !important;
+    }
+
+    .fx-steps-buttons-container {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
     .swiper-btns {
         position: absolute;
         width: 100%;
@@ -207,7 +300,7 @@ add_shortcode('crypto-fx', function(){
     .tabs-container{
         position: relative;
     }
-    .crypto-fx-tabs-buttons {
+    .crypto-fx-tabs-switcher {
         display: flex;
         justify-content: center;
         padding: 20px;
@@ -215,6 +308,9 @@ add_shortcode('crypto-fx', function(){
 
     .columns.swiper-slide {
         width: 30.33% !important;
+    }
+    .columns.cols-50.swiper-slide{
+        width:50% !important;
     }
 
     .prices-container {
@@ -302,6 +398,9 @@ add_shortcode('crypto-fx', function(){
         .columns.swiper-slide {
             width: 100% !important;
         }
+        .columns.cols-50.swiper-slide{
+            width:100% !important;
+        }
 
         .swiper-btns {
             display: block !important;
@@ -324,8 +423,8 @@ add_shortcode('crypto-fx', function(){
     .switch {
         position: relative;
         display: inline-block;
-        width: 60px;
-        height: 34px;
+        width: 300px;
+        height: 65px;
     }
 
     /* Hide default HTML checkbox */
@@ -343,21 +442,31 @@ add_shortcode('crypto-fx', function(){
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: #ccc;
+        background-color: #2196F3;
         -webkit-transition: .4s;
         transition: .4s;
     }
 
     .slider:before {
         position: absolute;
-        content: "";
-        height: 26px;
-        width: 26px;
-        left: 4px;
-        bottom: 4px;
+        content: "CRYPTO";
+        height: 55px;
+        width: 150px;
+        text-align: center;
+        left: 5px;
+        bottom: 5px;
         background-color: white;
         -webkit-transition: .4s;
         transition: .4s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .slider.fx:before{
+        content : 'FX';
     }
 
     input:checked+.slider {
@@ -369,9 +478,9 @@ add_shortcode('crypto-fx', function(){
     }
 
     input:checked+.slider:before {
-        -webkit-transform: translateX(26px);
-        -ms-transform: translateX(26px);
-        transform: translateX(26px);
+        -webkit-transform: translateX(140px);
+        -ms-transform: translateX(140px);
+        transform: translateX(140px);
     }
 
     /* Rounded sliders */
@@ -380,7 +489,7 @@ add_shortcode('crypto-fx', function(){
     }
 
     .slider.round:before {
-        border-radius: 50%;
+        border-radius: 34px;
     }
 </style>
 
