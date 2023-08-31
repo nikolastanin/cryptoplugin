@@ -12,12 +12,11 @@ const swiper = new Swiper('.swiper', {
 
 
 });
-
+function test(){
 document.addEventListener("DOMContentLoaded", function () {
     // Get all <a> elements within elements with the class .prices
     const priceLinks = document.querySelectorAll('.prices a');
     const challengesLinks = document.querySelectorAll('.challenges a');
-    console.log(challengesLinks)
     // Add a click event listener to each <a> element
     priceLinks.forEach(link => {
         link.addEventListener('click', () => {
@@ -43,3 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+}
+
+test();
