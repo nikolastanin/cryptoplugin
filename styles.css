@@ -152,6 +152,10 @@ ul.price:hover li {
     .columns {
         width: 100%;
     }
+    .columns-wrapper {
+        display: flex;
+        justify-content: flex-start;
+    }
     .cta > .elementor-button-wrapper .elementor-button {
         width: 30.33%;
     }
@@ -324,3 +328,4 @@ swiper-button-next:after, .swiper-button-prev:before {
     width: 44px !important;
     height: 44px !important;
 }
+
