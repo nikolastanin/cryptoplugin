@@ -3,7 +3,7 @@
  * Plugin Name: Crypto-Fx pricing plugin
  * Author: Nikola Stanin
  * Author URI: https://github.com/nikolastanin
- * Version: 1.01
+ * Version: 1.02
  *
  * @package crypto-fx-plugin
  */
