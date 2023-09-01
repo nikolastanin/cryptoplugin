@@ -36,6 +36,7 @@
 .fx-steps-buttons-container {
     display: flex;
     justify-content: space-evenly;
+    margin: 0 0 10px 0;
 }
 
 .swiper-btns {
@@ -102,10 +103,14 @@
     margin: 0;
     -webkit-transition: 0.3s;
     transition: 0.3s;
-    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     padding :0 15px 0 15px;
     border-top: 6px solid #111;
 
+}
+
+.swiper.swiper-initialized.swiper-horizontal.swiper-backface-hidden {
+    padding: 0 0 20px;
 }
 
 /* Add shadows on hover */
@@ -219,7 +224,8 @@ ul.price:hover li {
     text-align: center;
     left: 5px;
     bottom: 5px;
-    background-color: rgb(15,164,247);
+    background-color: transparent;
+    background-image: linear-gradient(0deg, #157EFD 0%, #09C9FC 100%);
     -webkit-transition: .4s;
     transition: .4s;
     display: flex;
@@ -236,12 +242,14 @@ p.fx {
     font-size: 20px;
     right: 67px;
     top: 15px;
+    color:white;
     font-weight: bold;
     position: absolute;
 }
 p.crypto {
     font-size: 20px;
     left: 39px;
+    color:white;
     top: 16px;
     font-weight: bold;
     position: absolute;
