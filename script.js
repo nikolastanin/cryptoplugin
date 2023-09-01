@@ -42,6 +42,21 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+
+
+    tippy('.profit-target', {
+        content: "I'm a Tippy tooltip!",
+    }); tippy('.max-daily-loss', {
+        content: "I'm a Tippy tooltip!",
+    }); tippy('.max-drawdown', {
+        content: "tool tio",
+    }); tippy('.refundable-fee', {
+        content: "I'm a Tippy tooltip!",
+    }); tippy('.leverage', {
+        content: "I'm a Tippy tooltip!",
+    });
+
 }
 
 test();
