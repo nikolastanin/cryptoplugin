@@ -83,7 +83,6 @@ add_shortcode('crypto-fx', function(){
 
             }" x-init="{ tab: 'tab-1' }">
 
-<button id="myButton">mybutton</button>
     <!--    tabs switcher-->
     <div class="crypto-fx-tabs-switcher">
         <!-- Rounded switch -->
@@ -198,21 +197,21 @@ add_shortcode('crypto-fx', function(){
                     <div class="columns swiper-slide">
                         <ul class="price">
                             <li class="header">Step 2</li>
-                            <li x-html="'Profit Target <br><strong>' + formatter((money*0.05 + (money)))"></li>
-                            <li>Max Daily Loss <br> <strong>5%</strong></li>
-                            <li x-html="'Max Drawdown  <br><strong>' + formatter((money*0.08)) "></li>
-                            <li>Leverage<br><strong>Up to 30%</strong></li>
-                            <li x-html="'Refundable fee <br><strong> N/A'">Refundable Fee</li>
+                            <li class="profit-target" x-html="'Profit Target <br><strong>' + formatter((money*0.05 + (money)))"></li>
+                            <li class="max-daily-loss" >Max Daily Loss <br> <strong>5%</strong></li>
+                            <li class="max-drawdown" x-html="'Max Drawdown  <br><strong>' + formatter((money*0.08)) "></li>
+                            <li class="leverage">Leverage<br><strong>Up to 30%</strong></li>
+                            <li class="refundable-fee" x-html="'Refundable fee <br><strong> N/A'">Refundable Fee</li>
                         </ul>
                     </div>
                     <div class="columns swiper-slide">
                         <ul class="price">
                             <li class="header">Funded Account</li>
-                            <li x-html="'Profit Target <br><strong>$' + (money*0)"></li>
-                            <li>Max Daily Loss <br> <strong>5%</strong></li>
-                            <li x-html="'Max Drawdown  <br><strong>' + formatter((money*0.08)) "></li>
-                            <li>Leverage<br><strong>Up to 30%</strong></li>
-                            <li x-html="'Refundable fee <br><strong> 100%'">Refundable Fee</li>
+                            <li class="profit-target" x-html="'Profit Target <br><strong>$' + (money*0)"></li>
+                            <li class="max-daily-loss">Max Daily Loss <br> <strong>5%</strong></li>
+                            <li class="max-drawdown" x-html="'Max Drawdown  <br><strong>' + formatter((money*0.08)) "></li>
+                            <li class="leverage">Leverage<br><strong>Up to 30%</strong></li>
+                            <li class="refundable-fee" x-html="'Refundable fee <br><strong> 100%'">Refundable Fee</li>
                         </ul>
                     </div>
                 </div>
@@ -225,11 +224,11 @@ add_shortcode('crypto-fx', function(){
                     <div class="columns cols-50 swiper-slide">
                         <ul class="price">
                             <li class="header">Step 1</li>
-                            <li x-html="'Profit Target <br> <strong>' + formatter((money*0.08 + (money)))"></li>
-                            <li>Max Daily Loss <br> <strong>4%</strong></li>
-                            <li x-html="'Max Drawdown <br><strong>' + formatter((money*0.06) )"></li>
-                            <li>Leverage<br><strong>Up to 100x</strong></li>
-                            <li
+                            <li class="profit-target" x-html="'Profit Target <br> <strong>' + formatter((money*0.08 + (money)))"></li>
+                            <li class="max-daily-loss">Max Daily Loss <br> <strong>4%</strong></li>
+                            <li class="max-drawdown" x-html="'Max Drawdown <br><strong>' + formatter((money*0.06) )"></li>
+                            <li class="leverage">Leverage<br><strong>Up to 100x</strong></li>
+                            <li class="refundable-fee"
                                 x-html="'Refundable fee <br><strong>' + formatter(refundable_fee_fx[money]+refundable_fee_fx[money]*0.10)">
                                 Refundable Fee</li>
                         </ul>
@@ -237,11 +236,11 @@ add_shortcode('crypto-fx', function(){
                     <div class="columns cols-50 swiper-slide">
                         <ul class="price">
                             <li class="header">Funded Account</li>
-                            <li x-html="'Profit Target <br><strong>$' + (money*0)"></li>
-                            <li>Max Daily Loss <br> <strong>4%</strong></li>
-                            <li x-html="'Max Drawdown  <br><strong>' + formatter((money*0.06)) "></li>
-                            <li>Leverage<br><strong>Up to 100x</strong></li>
-                            <li x-html="'Refundable fee <br><strong> 100%'">Refundable Fee</li>
+                            <li class="profit-target" x-html="'Profit Target <br><strong>$' + (money*0)"></li>
+                            <li class="max-daily-loss">Max Daily Loss <br> <strong>4%</strong></li>
+                            <li class="max-drawdown" x-html="'Max Drawdown  <br><strong>' + formatter((money*0.06)) "></li>
+                            <li class="leverage">Leverage<br><strong>Up to 100x</strong></li>
+                            <li class="refundable-fee" x-html="'Refundable fee <br><strong> 100%'">Refundable Fee</li>
                         </ul>
                     </div>
                 </div>
@@ -252,32 +251,32 @@ add_shortcode('crypto-fx', function(){
                     <div class="columns swiper-slide">
                         <ul class="price">
                             <li class="header">Step 1</li>
-                            <li x-html="'Profit Target <br> <strong>' + formatter((money*0.08 + (money)))"></li>
-                            <li>Max Daily Loss <br> <strong>5%</strong></li>
-                            <li x-html="'Max Drawdown  <br><strong>' + formatter((money*0.10) )"></li>
-                            <li>Leverage<br><strong>Up to 100x</strong></li>
-                            <li x-html="'Refundable fee <br><strong>' + formatter(refundable_fee_fx[money])">Refundable
+                            <li class="profit-target" x-html="'Profit Target <br> <strong>' + formatter((money*0.08 + (money)))"></li>
+                            <li class="max-daily-loss">Max Daily Loss <br> <strong>5%</strong></li>
+                            <li class="max-drawdown" x-html="'Max Drawdown  <br><strong>' + formatter((money*0.10) )"></li>
+                            <li class="leverage">Leverage<br><strong>Up to 100x</strong></li>
+                            <li class="refundable-fee" x-html="'Refundable fee <br><strong>' + formatter(refundable_fee_fx[money])">Refundable
                                 Fee</li>
                         </ul>
                     </div>
                     <div class="columns swiper-slide">
                         <ul class="price">
                             <li class="header">Step 2</li>
-                            <li x-html="'Profit Target <br><strong>' + formatter((money*0.05 + (money)))"></li>
-                            <li>Max Daily Loss <br> <strong>5%</strong></li>
-                            <li x-html="'Max Drawdown  <br><strong>' + formatter((money*0.10)) "></li>
-                            <li>Leverage<br><strong>Up to 100x</strong></li>
-                            <li x-html="'Refundable fee <br><strong> N/A'">Refundable Fee</li>
+                            <li class="profit-target" x-html="'Profit Target <br><strong>' + formatter((money*0.05 + (money)))"></li>
+                            <li class="max-daily-loss">Max Daily Loss <br> <strong>5%</strong></li>
+                            <li class="max-drawdown" x-html="'Max Drawdown  <br><strong>' + formatter((money*0.10)) "></li>
+                            <li class="leverage">Leverage<br><strong>Up to 100x</strong></li>
+                            <li class="refundable-fee" x-html="'Refundable fee <br><strong> N/A'">Refundable Fee</li>
                         </ul>
                     </div>
                     <div class="columns swiper-slide">
                         <ul class="price">
                             <li class="header">Funded Account</li>
-                            <li x-html="'Profit Target <br><strong>$' + (money*0)"></li>
-                            <li>Max Daily Loss <br> <strong>5%</strong></li>
-                            <li x-html="'Max Drawdown  <br><strong>' + formatter((money*0.10)) "></li>
-                            <li>Leverage<br><strong>Up to 100x</strong></li>
-                            <li x-html="'Refundable fee <br><strong> 100%'">Refundable Fee</li>
+                            <li class="profit-target" x-html="'Profit Target <br><strong>$' + (money*0)"></li>
+                            <li class="max-daily-loss">Max Daily Loss <br> <strong>5%</strong></li>
+                            <li class="max-drawdown" x-html="'Max Drawdown  <br><strong>' + formatter((money*0.10)) "></li>
+                            <li class="leverage">Leverage<br><strong>Up to 100x</strong></li>
+                            <li class="refundable-fee" x-html="'Refundable fee <br><strong> 100%'">Refundable Fee</li>
                         </ul>
                     </div>
                 </div>

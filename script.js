@@ -44,7 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-
     tippy('.profit-target', {
         content: "I'm a Tippy tooltip!",
     }); tippy('.max-daily-loss', {
