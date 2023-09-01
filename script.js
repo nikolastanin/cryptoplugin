@@ -45,15 +45,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     tippy('.profit-target', {
-        content: "I'm a Tippy tooltip!",
+        content: "Account size required to pass onto the next Step.",
     }); tippy('.max-daily-loss', {
-        content: "I'm a Tippy tooltip!",
+        content: "Maximum percentage decrease allowed in a single day in account size before account breach.",
     }); tippy('.max-drawdown', {
-        content: "tool tio",
+        content: "Maximum decrease allowed in account size with no time limit before account breach.",
     }); tippy('.refundable-fee', {
-        content: "I'm a Tippy tooltip!",
+        content: "Fee charged by our platform for starting a challenge which gets refunded in case of a sucessfully funded account.",
     }); tippy('.leverage', {
-        content: "I'm a Tippy tooltip!",
+        content: "Use of borrowed funds to increase your trading position beyond what would be available from your cash balance alone.",
     });
 
 }
